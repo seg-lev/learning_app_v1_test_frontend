@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>הרשמה</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #f0f4f8;
+    }
+
+    .login-card {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+      width: 100%;
+      max-width: 380px;
+    }
+
+    h1 {
+      font-size: 1.5rem;
+      margin-bottom: 0.25rem;
+      color: #1a1a2e;
+    }
+
+    .subtitle {
+      color: #64748b;
+      font-size: 0.9rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group {
+      margin-bottom: 1rem;
+    }
+
+    label {
+      display: block;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: #334155;
+      margin-bottom: 0.35rem;
+    }
+
+    input {
+      width: 100%;
+      padding: 0.65rem 0.75rem;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: border-color 0.2s;
+    }
+
+    input:focus {
+      outline: none;
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+    }
+
+    .terms {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.4rem;
+      margin-bottom: 1.25rem;
+      font-size: 0.875rem;
+      color: #475569;
+      line-height: 1.4;
+    }
+
+    .terms input {
+      width: auto;
+      margin-top: 0.2rem;
+      flex-shrink: 0;
+    }
+
+    a {
+      color: #3b82f6;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    button {
+      width: 100%;
+      padding: 0.75rem;
+      background: #3b82f6;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    button:hover {
+      background: #2563eb;
+    }
+
+    .signup {
+      text-align: center;
+      margin-top: 1.25rem;
+      font-size: 0.875rem;
+      color: #64748b;
+    }
+
+    .error-message {
+      background: #fef2f2;
+      color: #b91c1c;
+      border: 1px solid #fecaca;
+      border-radius: 8px;
+      padding: 0.65rem 0.75rem;
+      font-size: 0.875rem;
+      margin-bottom: 1rem;
+      display: none;
+    }
+
+    .error-message.visible {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-card">
+    <h1>יצירת חשבון</h1>
+    <p class="subtitle">הירשמו כדי להתחיל</p>
+
+    <p id="error-message" class="error-message" role="alert"></p>
+
+    <form action="/register" method="post">
+      <div class="form-group">
+        <label for="name">שם מלא</label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          placeholder="הזינו את שמכם"
+          required
+          autocomplete="name"
+        >
+      </div>
+
+      <div class="form-group">
+        <label for="email">אימייל</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="your@email.com"
+          required
+          autocomplete="email"
+          dir="ltr"
+        >
+      </div>
+
+      <div class="form-group">
+        <label for="password">סיסמה</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          placeholder="לפחות 8 תווים"
+          required
+          minlength="8"
+          autocomplete="new-password"
+        >
+      </div>
+
+      <div class="form-group">
+        <label for="password_confirm">אימות סיסמה</label>
+        <input
+          type="password"
+          id="password_confirm"
+          name="password_confirm"
+          placeholder="הזינו שוב את הסיסמה"
+          required
+          minlength="8"
+          autocomplete="new-password"
+        >
+      </div>
+
+      <label class="terms">
+        <input type="checkbox" name="terms" id="terms" required>
+        <span>אני מסכים/ה ל<a href="#">תנאי השימוש</a> ול<a href="#">מדיניות הפרטיות</a></span>
+      </label>
+
+      <button type="submit">הרשמה</button>
+    </form>
+
+    <p class="signup">
+      כבר יש לכם חשבון? <a href="login.html">התחברות</a>
+    </p>
+  </div>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const error = params.get('error');
+    if (error) {
+      const el = document.getElementById('error-message');
+      el.textContent = decodeURIComponent(error);
+      el.classList.add('visible');
+      window.history.replaceState({}, '', 'register.html');
+    }
+  </script>
+</body>
+</html>
