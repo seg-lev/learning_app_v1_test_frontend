@@ -204,9 +204,8 @@
       כבר יש לכם חשבון? <a href="login.html">התחברות</a>
     </p>
   </div>
-  <script src="config.js"></script>
   <script>
-    document.getElementById('register-form').action = API_BASE + '/register';
+    document.getElementById('register-form').action = 'https://learning-app-v1-test-backend.onrender.com/register';
 
     const params = new URLSearchParams(window.location.search);
     const error = params.get('error');

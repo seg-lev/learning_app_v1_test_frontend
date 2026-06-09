@@ -181,9 +181,8 @@
       אין לכם חשבון? <a href="register.html">הרשמה</a>
     </p>
   </div>
-  <script src="config.js"></script>
   <script>
-    document.getElementById('login-form').action = API_BASE + '/login';
+    document.getElementById('login-form').action = 'https://learning-app-v1-test-backend.onrender.com/login';
 
     const params = new URLSearchParams(window.location.search);
     if (params.get('login') === 'success') {
