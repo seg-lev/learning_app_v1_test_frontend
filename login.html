@@ -181,9 +181,10 @@
       אין לכם חשבון? <a href="register.html">הרשמה</a>
     </p>
   </div>
-  <script src="config.js"></script>
   <script>
-    document.getElementById('login-form').action = window.API_BASE + '/login';
+    const API_BASE = 'http://localhost:3000';
+
+    document.getElementById('login-form').action = API_BASE + '/login';
 
     const params = new URLSearchParams(window.location.search);
     if (params.get('login') === 'success') {
