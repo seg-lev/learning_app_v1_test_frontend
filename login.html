@@ -139,7 +139,7 @@
 
     <p id="error-message" class="error-message" role="alert"></p>
 
-    <form action="/login" method="post">
+    <form id="login-form" method="post">
       <div class="form-group">
         <label for="email">אימייל</label>
         <input
@@ -181,7 +181,10 @@
       אין לכם חשבון? <a href="register.html">הרשמה</a>
     </p>
   </div>
+  <script src="config.js"></script>
   <script>
+    document.getElementById('login-form').action = window.API_BASE + '/login';
+
     const params = new URLSearchParams(window.location.search);
     if (params.get('login') === 'success') {
       alert('התחברות מוצלחת');

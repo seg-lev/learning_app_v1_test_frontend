@@ -140,7 +140,7 @@
 
     <p id="error-message" class="error-message" role="alert"></p>
 
-    <form action="/register" method="post">
+    <form id="register-form" method="post">
       <div class="form-group">
         <label for="name">שם מלא</label>
         <input
@@ -204,7 +204,10 @@
       כבר יש לכם חשבון? <a href="login.html">התחברות</a>
     </p>
   </div>
+  <script src="config.js"></script>
   <script>
+    document.getElementById('register-form').action = window.API_BASE + '/register';
+
     const params = new URLSearchParams(window.location.search);
     const error = params.get('error');
     if (error) {
